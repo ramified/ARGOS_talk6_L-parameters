@@ -1,9 +1,9 @@
 \contentsline {section}{\tocsection {}{1}{Prelude}}{1}{section.1}% 
 \contentsline {section}{\tocsection {}{2}{Weil group}}{2}{section.2}% 
-\contentsline {section}{\tocsection {}{3}{(Langlands) Dual group}}{2}{section.3}% 
-\contentsline {section}{\tocsection {}{4}{1-cocycle}}{2}{section.4}% 
-\contentsline {section}{\tocsection {}{5}{$\mathcal {Z}^1(W_F,\mathaccentV {hat}05E{G}(\Lambda ))$ is a good scheme}}{2}{section.5}% 
-\contentsline {section}{\tocsection {}{6}{GIT and 1-parameter groups}}{2}{section.6}% 
-\contentsline {section}{\tocsection {}{7}{Geometrical points of GIT quotient}}{2}{section.7}% 
-\contentsline {section}{\tocsection {}{8}{functions of GIT quotient}}{2}{section.8}% 
-\contentsline {section}{\tocsection {}{}{References}}{2}{section*.2}% 
+\contentsline {section}{\tocsection {}{3}{(Langlands) Dual group}}{3}{section.3}% 
+\contentsline {section}{\tocsection {}{4}{1-cocycle}}{3}{section.4}% 
+\contentsline {section}{\tocsection {}{5}{$\mathcal {Z}^1(W_F,\mathaccentV {hat}05E{G}(\Lambda ))$ is a good scheme}}{3}{section.5}% 
+\contentsline {section}{\tocsection {}{6}{GIT and 1-parameter groups}}{3}{section.6}% 
+\contentsline {section}{\tocsection {}{7}{Geometrical points of GIT quotient}}{3}{section.7}% 
+\contentsline {section}{\tocsection {}{8}{functions of GIT quotient}}{3}{section.8}% 
+\contentsline {section}{\tocsection {}{}{References}}{3}{section*.2}% 
