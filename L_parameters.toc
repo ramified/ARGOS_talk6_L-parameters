@@ -3,7 +3,7 @@
 \contentsline {section}{\tocsection {}{3}{(Langlands) Dual group}}{3}{section.3}% 
 \contentsline {section}{\tocsection {}{4}{1-cocycle}}{4}{section.4}% 
 \contentsline {section}{\tocsection {}{5}{$\mathcal {Z}^1(W_F,\mathaccentV {hat}05E{G})$ is a good scheme}}{5}{section.5}% 
-\contentsline {section}{\tocsection {}{6}{GIT and 1-parameter groups}}{5}{section.6}% 
+\contentsline {section}{\tocsection {}{6}{Interlude: GIT and 1-parameter groups}}{5}{section.6}% 
 \contentsline {section}{\tocsection {}{7}{Geometrical points of GIT quotient}}{5}{section.7}% 
 \contentsline {section}{\tocsection {}{8}{functions of GIT quotient}}{5}{section.8}% 
 \contentsline {section}{\tocsection {}{}{References}}{5}{section*.2}% 
