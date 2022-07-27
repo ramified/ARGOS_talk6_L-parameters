@@ -27,6 +27,9 @@
 %\usepackage[notcite,notref]{showkeys}
 
 % showkeys  make label explicit on the paper
+\usepackage{quiver}
+\usepackage{MnSymbol}
+\usepackage{extpfeil}
 
 \makeatletter
 \@namedef{subjclassname@2010}{%
@@ -85,12 +88,16 @@
 \newcommand{\Spec}{\operatorname{Spec}}
 \newcommand{\Irr}{\operatorname{Irr}}
 \newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Alg}{\operatorname{Alg}}
+\newcommand{\Set}{\operatorname{Set}}
 \newcommand{\sep}{\operatorname{sep}}
 \newcommand{\norm}[1]{\Vert{#1}\Vert}
 \newcommand{\ord}{\operatorname{ord}}
 \newcommand{\orde}{\operatorname{ord}_e }
 \newcommand{\zdivp}{\mathbb{Z}\!\left[\hspace{-0.5mm}\frac{1}{p}\hspace{-0.5mm}\right]}
-
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\Ugp}{\operatorname{U}}
 \setlength\intextsep{0cm}
 \setlength\textfloatsep{0cm}
 
@@ -124,7 +131,7 @@ This note records contents in the talk. Feel free to ask me questions and give m
 
 
 \section{Prelude}
-During the last five talks, we've discussed a lot about the representation theory of a reductive group $G$ over an non-Archimedean local field $F$, which is viewed as the one side of the local Langlands correspondence (LLC). Today we will focus on the other side of the local Langlands correspondence: Langlands paremeters ($L$-parameters). Roughly speaking, it encodes $1$-cocycles of the Weil group $W_F$ over the dual group $\hat{G}$.
+During the last five talks, we've discussed a lot about the representation theory of a reductive group $G$ over an non-Archimedean local field $F$, which is viewed as the one side of the local Langlands correspondence (LLC). Today we will focus on the other side of the local Langlands correspondence: Langlands paremeters ($L$-parameters). Roughly speaking, it encodes $1$-cocycles of the Weil group $W_F$ over the dual group $\hat{G}$\footnote{Usually people denote $\hat{G}$ for the characters of $G$. Luckily, we won't discuss anything about the representation theory of $G$ in this note, so there won't be any confusion. (Replace $\hat{G}$ by $G^{\vee}$ if you don't like it.)}.
 $$\Irr_{\Lambda}\!\big(G(F)\big) \longrightarrow Z^1\big(W_F,\hat{G}(\Lambda)\big)$$
 
 We will not focus on the correspondence in this talk. Instead, we only care about $L$-parameters themselves. After introducing the concepts of Weil group, dual group and $1$-cocycles, we will define a functor of $L$-parameters and show it's represented by a scheme with nice properties. After the break, we will also see the properties of GIT\footnote{GIT=geometric invariant theory.} quotients of $L$-parameters, or, to be precise, we will consider the points and functions of the GIT quotients.
@@ -181,10 +188,110 @@ To be exact, the topology of $W_F$ is defined such that $I_F \subseteq W_F$ is o
 	{W_F^0/P_F=\zdivp \rtimes \mathbb{Z}}
 \end{tikzcd}\]
 \section{(Langlands) Dual group}
+The second ingredient of L-parameters is the dual group. The main reference are \cite[Section 4-5]{casselman2001group} and \cite{kevin2012unitary}. If you have never seen the structure theory of reductive groups, this \href{http://www.math.columbia.edu/~makisumi/old/reductivegroups.pdf}{expository paper} is highly recommanded.
+
+\begin{defn}[Dual group, Langlands dual group]
+Fix a quasi-split reductive connected group\footnote{Later, when (quasi-)split group is mentioned, it's always assumed to be a reductive connected group.} $G$ over $F$, a Borel subgroup $B \leq G$ as well as a maximal torus $T \leq B$. We get a root system
+$$\left( X^*(T), \Delta(B), X_*(T), \Delta^{\vee}(B) \right)$$ 
+with a $G_F$-action. Temporarily forget the $G_F$-action, there is a unique split group $\hat{G}$ (with standard Borel $\hat{B}$ and standard tori $\hat{T}$) whose root system
+$$\left( X^*(\hat{T}), \Delta(\hat{B}), X_*(\hat{T}), \Delta^{\vee}(\hat{B}) \right) \cong \left( X_*(T), \Delta^{\vee}(B), X^*(T), \Delta(B) \right)$$ 
+dual to the root system of $G$. $\hat{G}$ is called the \textbf{dual group} of $G$. We attach $\hat{G}$ with a $G_F$-action such that the induced $G_F$-action on the root system is the same as the original one. Finally, the \textbf{Langlands dual group} ${^L}G$ is defined as the semidirect product of $\hat{G}$ and $W_F$, where $W_F$ acts on $\hat{G}$ as a subgroup of $G_F$. 
+\end{defn}
+The whole process can be encapsulated in the following diagram:
+%https://tex.stackexchange.com/questions/289295/column-alignment-in-tikzcd Useful!
+% https://q.uiver.app/?q=WzAsOCxbMSwwLCJcXGxlZnQoIFheKihUKSwgXFxEZWx0YShCKSwgWF8qKFQpLCBcXERlbHRhXntcXHZlZX0oQikgXFxyaWdodClcXHRleHR7IFxccm90YXRlYm94W29yaWdpbj1jXXs5MH17JFxcY2lyY2xlYXJyb3dyaWdodCR9fVxcOyBHX0YiXSxbMSwxLCJcXGxlZnQoWF8qKFQpLCBcXERlbHRhXntcXHZlZX0oQiksIFheKihUKSwgXFxEZWx0YShCKSBcXHJpZ2h0KVxcdGV4dHsgXFxyb3RhdGVib3hbb3JpZ2luPWNdezkwfXskXFxjaXJjbGVhcnJvd3JpZ2h0JH19XFw7IEdfRiJdLFsxLDIsIlxcaGF0e0d9XFx0ZXh0eyBcXHJvdGF0ZWJveFtvcmlnaW49Y117OTB9eyRcXGNpcmNsZWFycm93cmlnaHQkfX1cXDsgR19GIFxcbG9uZ2xlZnRhcnJvdyBXX0YiXSxbMSwzLCJ7Xkx9Rzo9IFxcaGF0e0d9IFxccnRpbWVzIFdfRiJdLFswLDNdLFswLDJdLFswLDFdLFswLDAsIkcvRiJdLFs0LDMsIiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6InNxdWlnZ2x5In19fV0sWzUsMiwiXFx0ZXh0e2ZvcmdldGF0dGFjaH0iLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJzcXVpZ2dseSJ9fX1dLFs2LDEsIlxcdGV4dHtkdWFsfSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6InNxdWlnZ2x5In19fV0sWzcsMCwiKFQsQikiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJzcXVpZ2dseSJ9fX1dXQ==
+\[\begin{tikzcd}[column sep=large,row sep=0mm,/tikz/column 1/.append style={anchor=base east},/tikz/column 2/.append style={anchor=base west}]
+	{G/F} & {\left( X^*(T), \Delta(B), X_*(T), \Delta^{\vee}(B) \right)\text{ \rotatebox[origin=c]{90}{$\circlearrowright$}}\; G_F} \\
+	{} & {\left(X_*(T), \Delta^{\vee}(B), X^*(T), \Delta(B) \right)\text{ \rotatebox[origin=c]{90}{$\circlearrowright$}}\; G_F} \\
+	{} & {\hat{G}\text{ \rotatebox[origin=c]{90}{$\circlearrowright$}}\; G_F \longleftarrow W_F} \\
+	{} & {{^L}G:= \hat{G} \rtimes W_F}
+	\arrow[squiggly, from=4-1, to=4-2]
+	\arrow["{\text{forget}}","{\text{attach}}"', squiggly, from=3-1, to=3-2]
+	\arrow["{\text{dual}}", squiggly, from=2-1, to=2-2]
+	\arrow["{(T,B)}", squiggly, from=1-1, to=1-2]
+\end{tikzcd}\]
+
+\begin{eg}
+
+% https://q.uiver.app/?q=WzAsOSxbMCwwLCJHL0YiXSxbMSwwLCJcXGhhdHtHfS9cXG1hdGhiYntafV9sIl0sWzIsMCwie15MfUcvXFxtYXRoYmJ7Wn1fbCJdLFswLDEsIlxcR0xfbiJdLFsxLDEsIlxcR0xfbiJdLFsxLDIsIlxcR0xfbiJdLFsyLDEsIlxcR0xfbiBcXHRpbWVzIFdfRiJdLFsyLDIsIlxcR0xfbiBcXHJ0aW1lcyBXX0YiXSxbMCwyLCJcXFVncChuLEUvRikiXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJzcXVpZ2dseSJ9fX1dLFszLDQsIiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6InNxdWlnZ2x5In19fV0sWzEsMiwiIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoic3F1aWdnbHkifX19XSxbNCw2LCIiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJzcXVpZ2dseSJ9fX1dLFs1LDcsIiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6InNxdWlnZ2x5In19fV0sWzgsNSwiIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoic3F1aWdnbHkifX19XV0=
+\[\begin{tikzcd}[column sep=3em,row sep=0cm]
+	{G/F} & {\hat{G}/\mathbb{Z}_l} & {{^L}G/\mathbb{Z}_l} \\
+	{\GL_n} & {\GL_n} & {\GL_n \times W_F} \\
+	{\Ugp(n,E/F)} & {\GL_n} & {\GL_n \rtimes W_F}
+	\arrow[squiggly, from=1-1, to=1-2]
+	\arrow[squiggly, from=2-1, to=2-2]
+	\arrow[squiggly, from=1-2, to=1-3]
+	\arrow[squiggly, from=2-2, to=2-3]
+	\arrow[squiggly, from=3-2, to=3-3]
+	\arrow[squiggly, from=3-1, to=3-2]
+\end{tikzcd}\]
+
+Here, $E/F$ is a degree $2$ Galois extension (of NA local field), $\Ugp(n,E/F)$ is an quasi-split group defined by
+$$\Ugp(n,E/F)(R)=\left\{ A=(a_{ij})_{i,j=1}^n  \;\middle|\;
+\begin{aligned}
+&\\[-5mm]
+& a_{ij} \in E \otimes_F R\; \\[-1mm]
+& A\omega A^H =\omega
+\end{aligned}
+ \right\}$$
+ where
+ $$\omega:= \left[
+ \begin{smallmatrix}
+  &&&1 \\ &&-1& \\&1&&\\ \udots &&&
+  \end{smallmatrix}\right] \qquad \Gal(E/F):=\{1,\gamma\} \qquad A^H :=\gamma (A^T).$$
+  In this case, the Weil group $W_F$ acts on $\GL_n$ by
+  $$W_F \xtwoheadrightarrow{\hspace{0.2cm}} \Gal(E/F)=\{1,\gamma\} \; \rotatebox[origin=c]{270}{$\circlearrowleft$} \;\GL_n \qquad \gamma: A \longmapsto (\omega^{-1}A^{-1}\omega)^T$$
+  The details can be found in \cite{kevin2012unitary,casselman2001group}, or \href{https://github.com/ramified/personal_handwritten_collection/blob/main/weeklyupdate/2022.05.29_unitary_group.pdf}{my calculation for $\Ugp(3,E/F)$}.
+\end{eg}
+
+\begin{remark}
+Quasi-split group always becomes split after some finite extension. Therefore, the action of the Weil group $W_F$ always factors through a finite quotient $Q$. In many articles the Langlands dual group is defined as $\hat{G} \rtimes Q$, to obtain the structure of finite type scheme.\footnote{The main problem is, we have topology on both $\hat{G}$ and $W_F$, and the ``correct" semidirect product should be compatible with those topologies. It's also not perfect ot consider them as abstract groups, since $\hat{G}$ is a scheme and there's no nature group structure even on the closed points of $\hat{G}$.}%See https://math.stackexchange.com/questions/2396430/multiplication-of-two-closed-points-of-a-group-scheme
+\end{remark}
+
+As you see, the Langlands dual group encodes information of $W_F$-action, and the semidirect product inside twists everything to be less understandable. But in this talk, the real difficulty happens even when you consider $G=\GL_n$ case, so feel free to make your life easier, and replace $\rtimes$ by $\times$ whenever you get troubles.
+
+
 \section{1-cocycle}
-\section{$\mathcal{Z}^1(W_F,\hat{G}(\Lambda))$ is a good scheme}
+The third ingredient is easier to define.\footnote{We omit everything about Galois cohomology in \cite{serre1979galois}. Here we list two formulas for comparison:
+$$H^0(W,A)=A^W, \qquad H^0(W,A)=Z^1(W,A)/A.$$} Let us begin in a little more general.
+
+\begin{defn}
+Let $W$, $A$ be topological groups, and let $W$ acts on $A$ by 
+$$\phi: W \longrightarrow \Aut(A) \qquad \gamma \longrightarrow {^\gamma}(-).$$
+The 1-cocycle is defined as
+\begin{equation*}
+\begin{aligned}
+  Z^1(W,A):=\;&  \left\{ 
+  \begin{aligned}
+  &\\[-5mm]
+   {^L}\varphi:W& \longrightarrow A\rtimes W \\[-1mm]
+  \gamma & \longmapsto (\gamma_0,\gamma):={^L}\gamma
+  \end{aligned}
+   \;\middle|\; 
+   \begin{aligned}
+     &\\[-5mm]
+     &{^L}\varphi:\text{continuous group homo} \\[-1mm]
+     &{^L}\varphi \text{ is a section}
+     \end{aligned}
+       \;\right\} \\
+  =\;&  \left\{ \varphi:W \longrightarrow A \;\middle|\; \varphi(\gamma\gamma')=\varphi(\gamma)\,{^\gamma\hspace{-1mm}}\left(\varphi(\gamma)\right)  \;\right\} \\
+\end{aligned}
+\end{equation*}
+\end{defn} 
+Finally we can define L-parameters.\footnote{Strictly speaking, we replace topological space by condensed things in the following definition. In Section \ref{sec:GITquotient}, the same definition applies for $\hat{P}$, $\hat{B}$, or $\hat{T}$.}
+\begin{defn}
+Denote $W$ as any subquotient group of $W_F$ which can (naturally) act on $\hat{G}$, we define a functor 
+$$\mathcal{Z}^1(W,\hat{G}): \mathbb{Z}_l\text{-}\Alg \longrightarrow \Set \qquad \Lambda \longmapsto Z^1\big(W_F,\hat{G}(\Lambda)\big),$$
+and elements in $Z^1\big(W_F,\hat{G}(\Lambda)\big)$ are called L-parameters.
+\end{defn}
+\begin{eg}
+The $\Lambda$-points of $\mathcal{Z}^1(W,\GL_n)$ are just $n$-dim representations of $W$ (with coefficient in $\Lambda$), i.e.,
+$$\mathcal{Z}^1(W,\GL_n)(\Lambda)=\big\{ \rho:W\longrightarrow \GL_n(\Lambda)  \big\}.$$
+\end{eg}
+In the next section, we will prove the representability of $\mathcal{Z}^1(W_F,\hat{G})$.
+\section{$\mathcal{Z}^1(W_F,\hat{G})$ is a good scheme}
 \section{GIT and 1-parameter groups}
-\section{Geometrical points of GIT quotient}
+\section{Geometrical points of GIT quotient}\label{sec:GITquotient}
 \section{functions of GIT quotient}
 
 \bibliographystyle{plain}

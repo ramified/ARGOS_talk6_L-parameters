@@ -1,7 +1,26 @@
 \begin{thebibliography}{1}
 
+\bibitem{kevin2012unitary}
+Kevin Buzzard.
+\newblock Unitary groups: basic definitions.
+\newblock
+  \url{https://www.ma.imperial.ac.uk/~buzzard/maths/research/notes/unitary_groups_basic_definitions.pdf},
+  2012.
+
+\bibitem{casselman2001group}
+Bill Casselman.
+\newblock The l-group.
+\newblock \url{https://personal.math.ubc.ca/~cass/research/pdf/miyake.pdf},
+  2001.
+
+\bibitem{serre1979galois}
+Jean-Pierre Serre.
+\newblock Galois cohomology.
+\newblock In {\em Local Fields}, pages 150--163. Springer, 1979.
+
 \bibitem{Alex????galois}
 Alex Youcis.
 \newblock Galois groups of local and global fields.
+\newblock \url{https://alex-youcis.github.io/localglobalgalois.pdf}.
 
 \end{thebibliography}
