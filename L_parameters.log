@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  27 JUL 2022 15:33
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.15)  30 AUG 2022 16:34
 entering extended mode
 **./L_parameters.tex
 (L_parameters.tex
@@ -1473,15 +1473,8 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 299.
  (L_parameters.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 299.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 299.
-
-
-Package rerunfilecheck Warning: File `L_parameters.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `L_parameters.out':
-(rerunfilecheck)             Before: 8B0EF03535A38593594A3EB490F6EE59
-(rerunfilecheck)             After:  99CC1113C47848AE11060C1DD56966EE.
+Package rerunfilecheck Info: File `L_parameters.out' has not changed.
+(rerunfilecheck)             Checksum: 99CC1113C47848AE11060C1DD56966EE.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 299.
  ) 
 Here is how much of TeX's memory you used:
